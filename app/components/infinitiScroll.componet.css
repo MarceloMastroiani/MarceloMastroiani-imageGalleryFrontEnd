@@ -2,48 +2,24 @@
 
 :root {
   --gap-left: 20px;
-  --principal-font: "Sofia Sans Extra Condensed", sans-serif;
-  --principal-font-weight: 700;
 }
 
 .scroller-container {
   font-family: var(--principal-font);
   font-weight: var(--principal-font-weight);
-  mask: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
-}
-
-.scroll-white-text {
-  font-family: var(--principal-font);
-  font-weight: var(--principal-font-weight);
-  -webkit-text-fill-color: white;
-  -webkit-text-stroke: 1px black;
-}
-
-.stock-ticker-left {
-  display: flex;
-  gap: var(--gap-left);
+  mask: linear-gradient(90deg, transparent, black 50%, black 95%, transparent);
 }
 
 .stock-ticker-right {
   display: flex;
-}
-
-.stock-ticker-left div {
-  min-width: 100%;
   gap: var(--gap-left);
-  animation: scroll-left 20s linear infinite;
 }
 
 .stock-ticker-right div {
   min-width: 100%;
-  animation: scroll-right 20s linear infinite;
+  animation: scroll-right 25s linear infinite;
 }
 
-@keyframes scroll-left {
-  to {
-    transform: translateX(calc(-100% - var(--gap-left)));
-  }
-}
 @keyframes scroll-right {
   to {
     transform: translateX(calc(100%));
