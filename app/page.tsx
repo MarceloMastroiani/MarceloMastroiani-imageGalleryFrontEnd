@@ -13,7 +13,10 @@ export default function Home() {
           Welcome to Galerry
         </h1>
 
-        <InfinitiScroll />
+        <div>
+          <InfinitiScroll />
+        </div>
+
         <div className=" flex justify-center mb-5">
           <div className="flex flex-col items-center mt-20 bg-gradient-to-l from-neutral-950 via-neutral-900 to-neutral-950 p-5 w-1/2 ">
             <p

@@ -1,27 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap');
-
-:root {
-  --gap-left: 20px;
-}
-
-.scroller-container {
-  font-family: var(--principal-font);
-  font-weight: var(--principal-font-weight);
-  mask: linear-gradient(90deg, transparent, black 50%, black 95%, transparent);
-}
-
-.stock-ticker-right {
-  display: flex;
-  gap: var(--gap-left);
-}
-
-.stock-ticker-right div {
-  min-width: 100%;
-  animation: scroll-right 25s linear infinite;
-}
-
 @keyframes scroll-right {
-  to {
-    transform: translateX(calc(100%));
+  from {
+    transform: translateX(0);
   }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.scroll-container {
+  mask: linear-gradient(90deg, transparent, black 50%, black 95%, transparent);
+  opacity: 0.7;
+  margin-top: 20px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.scroll-content {
+  display: inline-block;
+  animation: scroll-right 10s infinite linear;
+}
+
+.item {
+  display: inline-block;
+  width: 200px;
+  height: 250px;
+  margin: 10px;
 }
