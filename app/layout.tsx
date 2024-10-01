@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="presentation-container">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

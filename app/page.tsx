@@ -5,7 +5,7 @@ import { ebGaramond, fredoka } from "./components/fonts";
 
 export default function Home() {
   return (
-    <main>
+    <main className="presentation-container">
       <div>
         <h1
           className={`${ebGaramond.className} text-center text-5xl text-gray-50 mt-7 opacity-70`}
