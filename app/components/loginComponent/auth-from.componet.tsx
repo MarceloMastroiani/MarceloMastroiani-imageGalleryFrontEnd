@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button, buttonVariants } from "@/app/components/ui/button";
+import { Label } from "@/app/components/ui/label";
 import {
   Card,
   CardContent,
@@ -11,8 +10,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/app/components/ui/card";
 import { fredoka } from "../fonts";
+import Link from "next/link";
 
 export default function AutFromComponent() {
   const [email, setEmail] = useState("");
@@ -41,28 +41,28 @@ export default function AutFromComponent() {
               <Label htmlFor="email" className="text-gray-200">
                 Correo electrónico
               </Label>
-              <Input
+              <input
                 id="email"
                 type="email"
                 placeholder="tu@ejemplo.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="bg-gray-700 text-gray-100 border-gray-600 focus:border-blue-500"
+                className="input-field"
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password" className="text-gray-200">
                 Contraseña
               </Label>
-              <Input
+              <input
                 id="password"
                 type="password"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="bg-gray-700 text-gray-100 border-gray-600 focus:border-blue-500"
+                className="input-field"
               />
             </div>
           </form>
@@ -74,12 +74,13 @@ export default function AutFromComponent() {
           >
             Iniciar sesión
           </Button>
-          <Button
-            variant="outline"
-            className="w-full bg-gray-700 hover:bg-gray-600 text-gray-200 border-gray-600"
+
+          <Link
+            href="/register"
+            className={buttonVariants({ variant: "default" })}
           >
             Registrarse
-          </Button>
+          </Link>
         </CardFooter>
       </Card>
     </div>

@@ -1,0 +1,7 @@
+#register-from.componet
+agregara zod para validar los datos y limitar los campos como nombre, apellido, email, contraseña
+
+#login-from.componet
+hacer login 
+auth token
+agregara zod para validar los datos y limitar los campos como email, contraseña
