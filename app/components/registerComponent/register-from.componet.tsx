@@ -48,6 +48,7 @@ export default function RegisterFromComponent() {
       .post("http://localhost:8080/user/create", formData)
       .then(function (response) {
         if (response.status === 201) {
+          //el console.log es para ver que se recibe desde la api (ESTO SE DEBE QUITAR CUANDO SE MANDA PRODUCCION)
           console.log(response.data);
           return router.push("/login");
         }

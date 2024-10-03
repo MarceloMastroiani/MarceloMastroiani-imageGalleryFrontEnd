@@ -17,6 +17,8 @@ import Link from "next/link";
 export default function AutFromComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //traer de la api el findOneByEmail para buscar el usuario por email
+  //traer datos de la api para logear el usuario
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
