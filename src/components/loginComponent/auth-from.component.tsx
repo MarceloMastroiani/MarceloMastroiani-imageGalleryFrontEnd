@@ -1,29 +1,56 @@
 "use client";
 
 import { useState } from "react";
-import { Button, buttonVariants } from "@/app/components/ui/button";
-import { Label } from "@/app/components/ui/label";
+
+import { Label } from "@/src/components/ui/label";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-} from "@/app/components/ui/card";
+} from "@/src/components/ui/card";
 import { fredoka } from "../fonts";
 import Link from "next/link";
+import axios from "axios";
+
+//interface para guardar los datos del formulario del login
+interface FormDataAuth {
+  email: string;
+  password: string;
+}
 
 export default function AutFromComponent() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  //traer de la api el findOneByEmail para buscar el usuario por email
-  //traer datos de la api para logear el usuario
+  const [formDataAuth, setFormDataAuth] = useState<FormDataAuth>({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  //setea el valor de cada campo
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormDataAuth({
+      ...formDataAuth,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí iría la lógica de autenticación
-    console.log("Autenticando con:", email, password);
+
+    //enviar el formulario a la api para autenticar el usuario y obtener el token
+    await axios
+      .post(`http://localhost:8080/auth/login`, formDataAuth)
+      .then(function (response) {
+        if (response.status === 201) {
+          console.log(response.data);
+          //si existe, redirigir al usuario a la pagina de inicio de la galeria de fotos
+          // return router.push("/login");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -44,11 +71,11 @@ export default function AutFromComponent() {
                 Correo electrónico
               </Label>
               <input
-                id="email"
                 type="email"
+                name="email"
                 placeholder="tu@ejemplo.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formDataAuth.email}
+                onChange={handleChange}
                 required
                 className="input-field"
               />
@@ -58,32 +85,23 @@ export default function AutFromComponent() {
                 Contraseña
               </Label>
               <input
-                id="password"
                 type="password"
+                name="password"
                 placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formDataAuth.password}
+                onChange={handleChange}
                 required
                 className="input-field"
               />
             </div>
+            <button type="submit" className="button-field-secondary">
+              Iniciar sesión
+            </button>
+            <Link href="/register" className="button-field-main">
+              Registrarse
+            </Link>
           </form>
         </CardContent>
-        <CardFooter className="flex flex-col space-y-2">
-          <Button
-            type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-          >
-            Iniciar sesión
-          </Button>
-
-          <Link
-            href="/register"
-            className={buttonVariants({ variant: "default" })}
-          >
-            Registrarse
-          </Link>
-        </CardFooter>
       </Card>
     </div>
   );

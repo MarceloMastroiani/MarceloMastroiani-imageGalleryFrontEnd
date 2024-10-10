@@ -1,4 +1,4 @@
-import AutFromComponent from "../components/loginComponent/auth-from.componet";
+import AutFromComponent from "../../components/loginComponent/auth-from.component";
 
 export default function Login() {
   return (

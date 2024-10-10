@@ -1,7 +1,7 @@
 import Link from "next/link";
-import InfinitiScroll from "./components/appPage/infinitiScroll.componet";
-import NeuButton from "./components/appPage/neubutton.component";
-import { ebGaramond, fredoka } from "./components/fonts";
+import InfinitiScroll from "../components/appPage/infinitiScroll.componet";
+import NeuButton from "../components/appPage/neubutton.component";
+import { ebGaramond, fredoka } from "../components/fonts";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
         <h1
           className={`${ebGaramond.className} text-center text-5xl text-gray-50 mt-7 opacity-70`}
         >
-          Welcome to Galerry
+          Welcome to Gallery
         </h1>
 
         <div>

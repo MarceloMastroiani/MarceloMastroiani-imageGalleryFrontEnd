@@ -1,6 +1,6 @@
 "use client";
 
-import { Label } from "@/app/components/ui/label";
+import { Label } from "@/src/components/ui/label";
 import { useState } from "react";
 import {
   Card,
@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/app/components/ui/card";
+} from "@/src/components/ui/card";
 import { fredoka } from "../fonts";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -136,7 +136,7 @@ export default function RegisterFromComponent() {
                 />
               </div>
             </div>
-            <button type="submit" className="button-field">
+            <button type="submit" className="button-field-main">
               sing up
             </button>
           </form>
