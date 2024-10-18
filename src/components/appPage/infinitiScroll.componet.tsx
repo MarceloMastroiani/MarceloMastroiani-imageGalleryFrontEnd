@@ -17,6 +17,7 @@ function titleComponent() {
         alt="cccc"
         width={200}
         height={200}
+        priority={true}
       />
       <Image
         className="item"

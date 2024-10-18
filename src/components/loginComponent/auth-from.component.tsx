@@ -13,6 +13,7 @@ import {
 import { fredoka } from "../fonts";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 //interface para guardar los datos del formulario del login
 interface FormDataAuth {
@@ -26,8 +27,11 @@ export default function AutFromComponent() {
     password: "",
   });
 
+  const router = useRouter();
+
   //setea el valor de cada campo
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target);
     const { name, value } = e.target;
     setFormDataAuth({
       ...formDataAuth,
@@ -41,11 +45,29 @@ export default function AutFromComponent() {
     //enviar el formulario a la api para autenticar el usuario y obtener el token
     await axios
       .post(`http://localhost:8080/auth/login`, formDataAuth)
-      .then(function (response) {
+      .then(async function (response) {
+        console.log();
+
+        //validamos si la data recibida es correcta
         if (response.status === 201) {
-          console.log(response.data);
-          //si existe, redirigir al usuario a la pagina de inicio de la galeria de fotos
-          // return router.push("/login");
+          //validamos el token para saber si existe el usuario
+          await axios
+            .get("http://localhost:8080/profile", {
+              headers: {
+                Authorization: `Bearer ${response.data.access_token}`,
+              },
+            })
+            .then(function (tokenUser) {
+              console.log(tokenUser.data);
+              if (!tokenUser.status) {
+                throw new Error("Error al obtener el token del usuario");
+              }
+              //si existe, redirigir al usuario a la pagina de inicio de la galeria de fotos
+              return router.push("/gallery");
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         }
       })
       .catch(function (error) {

@@ -23,7 +23,7 @@
 
 .item {
   display: inline-block;
-  width: 200px;
+  width: auto;
   height: 250px;
   margin: 10px;
 }
